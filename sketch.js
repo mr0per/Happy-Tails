@@ -67,11 +67,13 @@ function showScreen(id) {
       { words: "be able to access your task".split(' '), indent: 0 },
       { words: "lists through here".split(' '), indent: 20 }
     ]);
-  } else if (id === 'homeScreen') {
+  } else if (id === 'tutorialHomeScreen') {
     animateBuddyScreen(screen, 'homeText', [
       { words: "try clicking on the collar icon".split(' '), indent: 0 },
       { words: "to start".split(' '), indent: 20 }
     ]);
+  } else if (id === 'homeScreen') {
+    // main home screen — no buddy
   } else if (id === 'collarTaskScreen') {
     animateBuddyScreen(screen, 'collarTaskText', [
       { words: "clicking on icons will take you".split(' '), indent: 0 },
@@ -270,7 +272,7 @@ function showScreen(id) {
     });
     animateBuddyScreen(screen, 'pawFarewellText', [
       { words: 'Good luck buddy, and'.split(' '), indent: 0 },
-      { words: 'remember pets need a lot of love'.split(' '), indent: 20 }
+      { words: 'remember pets need a lot of love'.split(' '), indent: 0 }
     ]);
   } else if (id === 'pawFarewellScreen2') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
@@ -300,7 +302,7 @@ document.getElementById('beginBtn').addEventListener('click', function () {
 });
 
 document.getElementById('buddyText3').addEventListener('click', function () {
-  showScreen('homeScreen');
+  showScreen('tutorialHomeScreen');
 });
 
 document.getElementById('collarIcon').addEventListener('click', function () {
@@ -338,7 +340,13 @@ document.addEventListener('click', function(e) {
     showScreen('pawFarewellScreen');
   } else if (e.target.closest('#pawFarewellText')) {
     showScreen('pawFarewellScreen2');
+  } else if (e.target.closest('#pawFarewellText2')) {
+    showScreen('homeScreen');
   }
+});
+
+document.getElementById('skipBtn').addEventListener('click', function () {
+  showScreen('homeScreen');
 });
 
 // Paw 1 click navigates to paw1ClickedScreen

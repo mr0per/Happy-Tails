@@ -19,6 +19,7 @@
       <p>Pet Care Management App</p>
     </div>
     <button class="btn" id="beginBtn">Begin</button>
+    <button class="btn" id="skipBtn">Skip Tutorial</button>
     <button class="btn" id="quitBtn">Quit</button>
   </div>
 
@@ -148,7 +149,56 @@
 
   </div>
 
-  <!-- ===== HOME SCREEN ===== -->
+  <!-- ===== TUTORIAL HOME SCREEN ===== -->
+  <div class="screen hidden" id="tutorialHomeScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon -->
+    <div class="clip" style="left:86px;top:112px;width:67px;height:45px">
+      <img src="images/food.png" alt="food"
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+    </div>
+
+    <!-- Water icon -->
+    <div class="clip" style="left:254px;top:112px;width:57px;height:45px">
+      <img src="images/WATER.png" alt="water"
+           style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+    </div>
+
+    <!-- Ball icon -->
+    <div class="clip" style="left:94px;top:264px;width:51px;height:45px">
+      <img src="images/ball.png" alt="ball"
+           style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+    </div>
+
+    <!-- Collar icon (clickable, tutorial) -->
+    <div id="collarIcon" style="position:absolute;left:246px;top:252px;width:71px;height:70px;cursor:pointer">
+      <!-- static glow ring -->
+      <div class="collar-glow"></div>
+      <!-- pulsing collar image -->
+      <div class="clip pulse" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/collar.png" alt="collar"
+             style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy (animated) -->
+    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeText"></div>
+
+  </div>
+
+  <!-- ===== HOME SCREEN (main) ===== -->
   <div class="screen hidden" id="homeScreen">
 
     <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
@@ -172,28 +222,23 @@
            style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
     </div>
 
-    <!-- Collar icon (clickable) -->
-    <div id="collarIcon" style="position:absolute;left:246px;top:252px;width:71px;height:70px;cursor:pointer">
-      <!-- static glow ring -->
-      <div class="collar-glow"></div>
-      <!-- pulsing collar image -->
-      <div class="clip pulse" style="position:absolute;inset:0;overflow:hidden">
+    <!-- Collar icon (plain, no animation) -->
+    <div style="position:absolute;left:246px;top:252px;width:71px;height:70px;cursor:pointer">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
         <img src="images/collar.png" alt="collar"
              style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
       </div>
     </div>
 
-    <!-- Buddy (animated) -->
-    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+    <!-- Point score label -->
+    <p style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:141px">point score:</p>
 
-    <!-- Speech bubble -->
-    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
-      <img src="images/bubble.png" alt=""
-           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    <!-- Buddy icon bottom-right -->
+    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
+      </div>
     </div>
-
-    <!-- Bubble text -->
-    <div class="buddy-text clickable" id="homeText"></div>
 
   </div>
 
