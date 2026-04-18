@@ -65,7 +65,1056 @@
     </div>
 
     <!-- Speech bubble text: Figma left=105 top=539 -->
-    <div class="buddy-text" id="buddyText"></div>
+    <div class="buddy-text clickable" id="buddyText"></div>
+
+  </div>
+
+  <!-- ===== BUDDY 2 SCREEN ===== -->
+  <div class="screen hidden" id="buddy2Screen">
+
+    <!-- Background layers -->
+    <img class="layer" style="top:8px" src="images/backgroundhome.png" alt="" />
+    <img class="layer" style="top:24px" src="images/squares.png" alt="" />
+
+    <!-- Food icon -->
+    <div class="clip" style="left:86px;top:112px;width:67px;height:45px">
+      <img src="images/food.png" alt="food"
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+    </div>
+
+    <!-- Water icon -->
+    <div class="clip" style="left:254px;top:112px;width:57px;height:45px">
+      <img src="images/WATER.png" alt="water"
+           style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+    </div>
+
+    <!-- Ball icon -->
+    <div class="clip" style="left:94px;top:264px;width:51px;height:45px">
+      <img src="images/ball.png" alt="ball"
+           style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+    </div>
+
+    <!-- Collar icon -->
+    <div class="clip" style="left:246px;top:252px;width:71px;height:70px">
+      <img src="images/collar.png" alt="collar"
+           style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+    </div>
+
+    <!-- Buddy winking: full canvas layer -->
+    <img class="layer buddy-animate" src="images/buddy.png" alt="buddy" />
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Speech bubble text -->
+    <div class="buddy-text clickable" id="buddyText2"></div>
+
+  </div>
+
+  <!-- ===== BUDDY 3 SCREEN ===== -->
+  <div class="screen hidden" id="buddy3Screen">
+
+    <img class="layer" style="top:8px" src="images/backgroundhome.png" alt="" />
+    <img class="layer" style="top:24px" src="images/squares.png" alt="" />
+
+    <div class="clip" style="left:86px;top:112px;width:67px;height:45px">
+      <img src="images/food.png" alt="food"
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+    </div>
+    <div class="clip" style="left:254px;top:112px;width:57px;height:45px">
+      <img src="images/WATER.png" alt="water"
+           style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+    </div>
+    <div class="clip" style="left:94px;top:264px;width:51px;height:45px">
+      <img src="images/ball.png" alt="ball"
+           style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+    </div>
+    <div class="clip" style="left:246px;top:252px;width:71px;height:70px">
+      <img src="images/collar.png" alt="collar"
+           style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+    </div>
+
+    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text clickable" id="buddyText3"></div>
+
+  </div>
+
+  <!-- ===== HOME SCREEN ===== -->
+  <div class="screen hidden" id="homeScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon -->
+    <div class="clip" style="left:86px;top:112px;width:67px;height:45px">
+      <img src="images/food.png" alt="food"
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+    </div>
+
+    <!-- Water icon -->
+    <div class="clip" style="left:254px;top:112px;width:57px;height:45px">
+      <img src="images/WATER.png" alt="water"
+           style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+    </div>
+
+    <!-- Ball icon -->
+    <div class="clip" style="left:94px;top:264px;width:51px;height:45px">
+      <img src="images/ball.png" alt="ball"
+           style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+    </div>
+
+    <!-- Collar icon (clickable) -->
+    <div id="collarIcon" style="position:absolute;left:246px;top:252px;width:71px;height:70px;cursor:pointer">
+      <!-- static glow ring -->
+      <div class="collar-glow"></div>
+      <!-- pulsing collar image -->
+      <div class="clip pulse" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/collar.png" alt="collar"
+             style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy (animated) -->
+    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeText"></div>
+
+  </div>
+
+  <!-- ===== COLLAR TASK SCREEN ===== -->
+  <div class="screen hidden" id="collarTaskScreen">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Brown card panel -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Walk Time title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1: left=86, top=92, w=233, h=57 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:54px">
+      <img src="images/box.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <!-- Paw 1: left=95, top=101, w=29, h=34 -->
+    <div style="position:absolute;left:95px;top:104px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2: left=86, top=195, w=233, h=53 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <!-- Paw 2: left=95, top=204 -->
+    <div style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3: left=86, top=296, w=233, h=53 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <!-- Paw 3: left=95, top=308 -->
+    <div style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy -->
+    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="collarTaskText"></div>
+
+  </div>
+
+  <!-- ===== WALK TAB SCREEN ===== -->
+  <div class="screen hidden" id="walkTabScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:104px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text clickable" id="walkTabText"></div>
+
+  </div>
+
+  <!-- ===== WALK PRACTICE SCREEN ===== -->
+  <div class="screen hidden" id="walkPracticeScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 (clickable entry) -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:104px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="walkPracticeText"></div>
+
+  </div>
+
+  <!-- ===== WAY TO GO SCREEN ===== -->
+  <div class="screen hidden" id="wayToGoScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:104px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Winking buddy -->
+    <img class="layer buddy-animate" src="images/buddy.png" alt="buddy" />
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text clickable" id="wayToGoText"></div>
+
+  </div>
+
+  <!-- ===== PAW PRACTICE SCREEN ===== -->
+  <div class="screen hidden" id="pawPracticeScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div class="paw-btn" id="pawBtn1" style="position:absolute;left:95px;top:104px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));cursor:pointer;transition:opacity 0.2s">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawTime1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div class="paw-btn" id="pawBtn2" style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));cursor:pointer;transition:opacity 0.2s">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawTime2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div class="paw-btn" id="pawBtn3" style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));cursor:pointer;transition:opacity 0.2s">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawTime3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="pawPracticeText" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== PAW 1 CLICKED SCREEN ===== -->
+  <div class="screen hidden" id="paw1ClickedScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 with checkmark -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div class="checkmark-animate" style="position:absolute;left:90px;top:102px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw1Time1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw1Time2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw1Time3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="paw1ClickedText" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== PAW 2 CLICKED SCREEN ===== -->
+  <div class="screen hidden" id="paw2ClickedScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 with paw -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw2Time1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 with checkmark -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div class="checkmark-animate" style="position:absolute;left:90px;top:206px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw2Time2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 with paw -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw2Time3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="paw2ClickedText" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== PAW 3 CLICKED SCREEN ===== -->
+  <div class="screen hidden" id="paw3ClickedScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 with paw -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw3Time1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 with paw -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw3Time2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 with checkmark -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div class="checkmark-animate" style="position:absolute;left:90px;top:308px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="paw3Time3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="paw3ClickedText" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== PAW HELP SCREEN ===== -->
+  <div class="screen hidden" id="pawHelpScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw1" style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck1" class="checkmark-animate" style="display:none;position:absolute;left:90px;top:102px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelpTime1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw2" style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck2" class="checkmark-animate" style="display:none;position:absolute;left:90px;top:206px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelpTime2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw3" style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck3" class="checkmark-animate" style="display:none;position:absolute;left:90px;top:308px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelpTime3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="pawHelpText" style="top:532px"></div>
+
+  </div>
+
+  <!-- ===== PAW HELP SCREEN 2 ===== -->
+  <div class="screen hidden" id="pawHelpScreen2">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw1b" style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck1b" style="display:none;position:absolute;left:90px;top:102px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp2Time1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw2b" style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck2b" style="display:none;position:absolute;left:90px;top:206px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp2Time2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw3b" style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck3b" style="display:none;position:absolute;left:90px;top:308px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp2Time3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="pawHelpText2" style="top:532px"></div>
+
+  </div>
+
+  <!-- ===== PAW HELP SCREEN 3 ===== -->
+  <div class="screen hidden" id="pawHelpScreen3">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw1c" style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck1c" style="display:none;position:absolute;left:90px;top:102px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp3Time1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw2c" style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck2c" style="display:none;position:absolute;left:90px;top:206px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp3Time2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw3c" style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck3c" style="display:none;position:absolute;left:90px;top:308px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp3Time3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="pawHelpText3" style="top:539px"></div>
+
+  </div>
+
+  <!-- ===== PAW HELP SCREEN 4 ===== -->
+  <div class="screen hidden" id="pawHelpScreen4">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw1d" style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck1d" style="display:none;position:absolute;left:90px;top:102px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp4Time1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw2d" style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck2d" style="display:none;position:absolute;left:90px;top:206px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp4Time2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="helpPaw3d" style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="helpCheck3d" style="display:none;position:absolute;left:90px;top:308px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="pawHelp4Time3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Buddy both eyes animated -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="pawHelpText4" style="top:539px"></div>
+
+  </div>
+
+  <!-- ===== FAREWELL SCREEN ===== -->
+  <div class="screen hidden" id="pawFarewellScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="farewellPaw1" style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="farewellCheck1" style="display:none;position:absolute;left:90px;top:102px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="farewellTime1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="farewellPaw2" style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="farewellCheck2" style="display:none;position:absolute;left:90px;top:206px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="farewellTime2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="farewellPaw3" style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="farewellCheck3" style="display:none;position:absolute;left:90px;top:308px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="farewellTime3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Winking buddy -->
+    <img class="layer buddy-animate" src="images/buddy.png" alt="buddy" />
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="pawFarewellText" style="top:539px"></div>
+
+  </div>
+
+  <!-- ===== FAREWELL SCREEN 2 ===== -->
+  <div class="screen hidden" id="pawFarewellScreen2">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Box 1 -->
+    <div class="clip" style="left:86px;top:92px;width:233px;height:57px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="farewell2Paw1" style="position:absolute;left:95px;top:101px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="farewell2Check1" style="display:none;position:absolute;left:90px;top:102px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="farewell2Time1" style="position:absolute;left:136px;top:104px;width:170px;height:34px;" />
+
+    <!-- Box 2 -->
+    <div class="clip" style="left:86px;top:195px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="farewell2Paw2" style="position:absolute;left:95px;top:204px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="farewell2Check2" style="display:none;position:absolute;left:90px;top:206px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="farewell2Time2" style="position:absolute;left:136px;top:207px;width:170px;height:34px;" />
+
+    <!-- Box 3 -->
+    <div class="clip" style="left:86px;top:296px;width:233px;height:54px">
+      <img src="images/box.png" alt="" style="position:absolute;width:393px;height:852px;left:-81px;top:-87px" />
+    </div>
+    <div id="farewell2Paw3" style="position:absolute;left:95px;top:305px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" />
+      </div>
+    </div>
+    <div id="farewell2Check3" style="display:none;position:absolute;left:90px;top:308px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))">
+      <div style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" />
+      </div>
+    </div>
+    <input type="time" disabled id="farewell2Time3" style="position:absolute;left:136px;top:304px;width:170px;height:34px;" />
+
+    <!-- Winking buddy -->
+    <img class="layer buddy-animate" src="images/buddy.png" alt="buddy" />
+
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <div class="buddy-text" id="pawFarewellText2" style="top:539px"></div>
 
   </div>
 

@@ -84,6 +84,39 @@ body {
   100% { opacity: 1; transform: scale(1); }
 }
 
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.18); }
+}
+
+.pulse {
+  animation: pulse 0.9s ease-in-out infinite;
+  transform-origin: center;
+  position: relative;
+}
+
+.pulse::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 14px;
+  box-shadow: 0 0 14px 6px rgba(253, 194, 164, 0.75);
+  pointer-events: none;
+}
+
+.collar-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 14px;
+  box-shadow: 0 0 14px 6px rgba(253, 194, 164, 0.75);
+  pointer-events: none;
+}
+
+@keyframes pulse-glow-counter {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(calc(1 / 1.18)); }
+}
+
 .buddy-animate {
   animation: buddySlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
@@ -91,6 +124,11 @@ body {
 .bubble-animate {
   opacity: 0;
   animation: popIn 0.4s ease-out 0.7s forwards;
+}
+
+.checkmark-animate {
+  opacity: 0;
+  animation: popIn 0.4s ease-out 0.3s forwards;
 }
 
 /* Buddy screen speech bubble text: Figma left=105 top=539 */
@@ -102,7 +140,7 @@ body {
   font-weight: 400;
   color: #5e2910;
   line-height: 1.5;
-  width: 215px;
+  width: 260px;
 }
 
 .buddy-text .word {
@@ -115,6 +153,10 @@ body {
 .buddy-text .word.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.buddy-text.clickable {
+  cursor: pointer;
 }
 
 /* Buttons — Figma: left=133, w=129, Begin top=647, Quit top=745 */
