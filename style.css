@@ -1,0 +1,143 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #c0522a;
+  font-family: 'Comfortaa', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Exact Figma canvas size */
+.screen {
+  position: relative;
+  width: 393px;
+  height: 852px;
+  overflow: hidden;
+  background-color: #c0522a;
+  flex-shrink: 0;
+}
+
+/* Each image is a 393x852 transparent canvas — stack them as layers */
+.layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 393px;
+  height: 852px;
+  pointer-events: none;
+}
+
+/* Title — Figma: left=75, top=416 */
+.title-group {
+  position: absolute;
+  left: 75px;
+  top: 416px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.title-group h1 {
+  font-size: 40px;
+  font-weight: 600;
+  color: #fdc2a4;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.title-group p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fdc2a4;
+  margin-top: 4px;
+  padding-left: 4px;
+}
+
+.hidden { display: none; }
+
+/* Clipping container for icons/images */
+.clip {
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Buddy slide-up animation */
+@keyframes buddySlideUp {
+  from { transform: translateY(260px); }
+  to   { transform: translateY(0); }
+}
+
+/* Bubble + text pop-in */
+@keyframes popIn {
+  0%   { opacity: 0; transform: scale(0.6); }
+  70%  { transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.buddy-animate {
+  animation: buddySlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.bubble-animate {
+  opacity: 0;
+  animation: popIn 0.4s ease-out 0.7s forwards;
+}
+
+/* Buddy screen speech bubble text: Figma left=105 top=539 */
+.buddy-text {
+  position: absolute;
+  left: 105px;
+  top: 539px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #5e2910;
+  line-height: 1.5;
+  width: 215px;
+}
+
+.buddy-text .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.buddy-text .word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Buttons — Figma: left=133, w=129, Begin top=647, Quit top=745 */
+.btn {
+  position: absolute;
+  left: 133px;
+  width: 129px;
+  height: 52px;
+  background-color: #5c3d2a;
+  color: #fdc2a4;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #7a5038;
+}
+
+#beginBtn { top: 647px; }
+#quitBtn  { top: 745px; }

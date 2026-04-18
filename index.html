@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Tails</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== SPLASH SCREEN ===== -->
+  <div class="screen" id="splashScreen">
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+    <img class="layer" src="images/dogo.png" alt="dog" />
+    <img class="layer" src="images/cat.png" alt="cat" />
+    <div class="title-group">
+      <h1>Happy Tails</h1>
+      <p>Pet Care Management App</p>
+    </div>
+    <button class="btn" id="beginBtn">Begin</button>
+    <button class="btn" id="quitBtn">Quit</button>
+  </div>
+
+  <!-- ===== BUDDY SCREEN ===== -->
+  <div class="screen hidden" id="buddyScreen">
+
+    <!-- Brown card panel -->
+    <img class="layer" style="top:8px" src="images/backgroundhome.png" alt="" />
+
+    <!-- 2x2 dark squares grid -->
+    <img class="layer" style="top:24px" src="images/squares.png" alt="" />
+
+    <!-- Food icon: clip left=86 top=112 w=67 h=45 -->
+    <div class="clip" style="left:86px;top:112px;width:67px;height:45px">
+      <img src="images/food.png" alt="food"
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+    </div>
+
+    <!-- Water icon: clip left=254 top=112 w=57 h=45 -->
+    <div class="clip" style="left:254px;top:112px;width:57px;height:45px">
+      <img src="images/WATER.png" alt="water"
+           style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+    </div>
+
+    <!-- Ball icon: clip left=94 top=264 w=51 h=45 -->
+    <div class="clip" style="left:94px;top:264px;width:51px;height:45px">
+      <img src="images/ball.png" alt="ball"
+           style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+    </div>
+
+    <!-- Collar icon: clip left=246 top=252 w=71 h=70 -->
+    <div class="clip" style="left:246px;top:252px;width:71px;height:70px">
+      <img src="images/collar.png" alt="collar"
+           style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+    </div>
+
+    <!-- Buddy dog: full canvas layer so it reaches the right edge -->
+    <img class="layer buddy-animate" src="images/buddy_both_eyes.png" alt="buddy" />
+
+    <!-- Speech bubble: clip left=86 top=495 w=290 h=180 -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Speech bubble text: Figma left=105 top=539 -->
+    <div class="buddy-text" id="buddyText"></div>
+
+  </div>
+
+  <script src="sketch.js"></script>
+</body>
+</html>
