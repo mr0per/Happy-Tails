@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,6 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
+  <!-- Notification overlay: always on top of all screens -->
+  <div id="toastOverlay" style="position:fixed;top:0;left:0;width:100%;height:0;z-index:99999;pointer-events:none;display:flex;justify-content:center;"></div>
+  <audio id="dingSfx" src="images/ding.mp3" preload="auto"></audio>
+  <audio id="textDingSfx" src="images/textding.mp3" preload="auto"></audio>
 
   <!-- ===== SPLASH SCREEN ===== -->
   <div class="screen" id="splashScreen">
@@ -204,26 +209,32 @@
     <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
     <img class="layer" src="images/squares.png" alt="" style="top:24px" />
 
-    <!-- Food icon -->
-    <div class="clip" style="left:86px;top:112px;width:67px;height:45px">
-      <img src="images/food.png" alt="food"
-           style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+    <!-- Food icon (clickable) -->
+    <div id="foodIcon" style="position:absolute;left:86px;top:112px;width:67px;height:45px;cursor:pointer">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/food.png" alt="food"
+             style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+      </div>
     </div>
 
-    <!-- Water icon -->
-    <div class="clip" style="left:254px;top:112px;width:57px;height:45px">
-      <img src="images/WATER.png" alt="water"
-           style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+    <!-- Water icon (clickable) -->
+    <div id="waterIcon" style="position:absolute;left:254px;top:112px;width:57px;height:45px;cursor:pointer">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/WATER.png" alt="water"
+             style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+      </div>
     </div>
 
-    <!-- Ball icon -->
-    <div class="clip" style="left:94px;top:264px;width:51px;height:45px">
-      <img src="images/ball.png" alt="ball"
-           style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+    <!-- Ball icon (clickable) -->
+    <div id="ballIcon" style="position:absolute;left:94px;top:264px;width:51px;height:45px;cursor:pointer">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/ball.png" alt="ball"
+             style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+      </div>
     </div>
 
-    <!-- Collar icon (plain, no animation) -->
-    <div style="position:absolute;left:246px;top:252px;width:71px;height:70px;cursor:pointer">
+    <!-- Collar icon (clickable) -->
+    <div id="homeCollarIcon" style="position:absolute;left:246px;top:252px;width:71px;height:70px;cursor:pointer">
       <div class="clip" style="position:absolute;inset:0;overflow:hidden">
         <img src="images/collar.png" alt="collar"
              style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
@@ -231,13 +242,485 @@
     </div>
 
     <!-- Point score label -->
-    <p style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:141px">point score:</p>
+    <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="homeScoreDisplay">0</span></p>
+
+    <!-- Buddy icon bottom-right (clickable) -->
+    <div id="homeBuddyIconBtn" style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden;cursor:pointer">
+      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
+    </div>
+
+    <!-- Buddy overlay (hidden by default) -->
+    <div class="clip buddy-animate" id="homeBuddy" style="display:none;left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+    <div class="clip bubble-animate" id="homeBubble" style="display:none;left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+    <div class="buddy-text clickable" id="homeBuddyText" style="display:none;top:529px"></div>
+
+  </div>
+
+  <!-- ===== HOME BUDDY 2 SCREEN ===== -->
+  <div class="screen hidden" id="homeBuddy2Screen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon (square glow) -->
+    <div style="position:absolute;left:75px;top:91px;width:88px;height:95px">
+      <div style="position:absolute;inset:0;border-radius:14px;box-shadow:0 0 6px 3px rgba(253,194,164,0.85);pointer-events:none"></div>
+      <div class="clip pulse" style="position:absolute;left:11px;top:21px;width:67px;height:45px;overflow:hidden">
+        <img src="images/food.png" alt="food" style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Water icon -->
+    <div style="position:absolute;left:254px;top:112px;width:57px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/WATER.png" alt="water" style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Ball icon -->
+    <div style="position:absolute;left:94px;top:264px;width:51px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/ball.png" alt="ball" style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+      </div>
+    </div>
+
+    <!-- Collar icon -->
+    <div style="position:absolute;left:246px;top:252px;width:71px;height:70px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/collar.png" alt="collar" style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeBuddyText2" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== HOME BUDDY 3 SCREEN ===== -->
+  <div class="screen hidden" id="homeBuddy3Screen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon (square glow) -->
+    <div style="position:absolute;left:75px;top:91px;width:88px;height:95px">
+      <div style="position:absolute;inset:0;border-radius:14px;box-shadow:0 0 6px 3px rgba(253,194,164,0.85);pointer-events:none"></div>
+      <div class="clip pulse" style="position:absolute;left:11px;top:21px;width:67px;height:45px;overflow:hidden">
+        <img src="images/food.png" alt="food" style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Water icon -->
+    <div style="position:absolute;left:254px;top:112px;width:57px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/WATER.png" alt="water" style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Ball icon -->
+    <div style="position:absolute;left:94px;top:264px;width:51px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/ball.png" alt="ball" style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+      </div>
+    </div>
+
+    <!-- Collar icon -->
+    <div style="position:absolute;left:246px;top:252px;width:71px;height:70px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/collar.png" alt="collar" style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeBuddyText3" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== HOME BUDDY WATER SCREEN ===== -->
+  <div class="screen hidden" id="homeBuddyWaterScreen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon -->
+    <div style="position:absolute;left:86px;top:112px;width:67px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/food.png" alt="food" style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Water icon (square glow) -->
+    <div style="position:absolute;left:238px;top:91px;width:85px;height:95px">
+      <div style="position:absolute;inset:0;border-radius:14px;box-shadow:0 0 6px 3px rgba(253,194,164,0.85);pointer-events:none"></div>
+      <div class="clip pulse" style="position:absolute;left:16px;top:21px;width:57px;height:45px;overflow:hidden">
+        <img src="images/WATER.png" alt="water" style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Ball icon -->
+    <div style="position:absolute;left:94px;top:264px;width:51px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/ball.png" alt="ball" style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+      </div>
+    </div>
+
+    <!-- Collar icon -->
+    <div style="position:absolute;left:246px;top:252px;width:71px;height:70px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/collar.png" alt="collar" style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeBuddyTextWater" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== HOME BUDDY WATER 2 SCREEN ===== -->
+  <div class="screen hidden" id="homeBuddyWater2Screen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon -->
+    <div style="position:absolute;left:86px;top:112px;width:67px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/food.png" alt="food" style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Water icon (square glow) -->
+    <div style="position:absolute;left:238px;top:91px;width:85px;height:95px">
+      <div style="position:absolute;inset:0;border-radius:14px;box-shadow:0 0 6px 3px rgba(253,194,164,0.85);pointer-events:none"></div>
+      <div class="clip pulse" style="position:absolute;left:16px;top:21px;width:57px;height:45px;overflow:hidden">
+        <img src="images/WATER.png" alt="water" style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Ball icon -->
+    <div style="position:absolute;left:94px;top:264px;width:51px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/ball.png" alt="ball" style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+      </div>
+    </div>
+
+    <!-- Collar icon -->
+    <div style="position:absolute;left:246px;top:252px;width:71px;height:70px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/collar.png" alt="collar" style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeBuddyTextWater2" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== HOME BUDDY 4 SCREEN ===== -->
+  <div class="screen hidden" id="homeBuddy4Screen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon -->
+    <div style="position:absolute;left:86px;top:112px;width:67px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/food.png" alt="food" style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Water icon -->
+    <div style="position:absolute;left:254px;top:112px;width:57px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/WATER.png" alt="water" style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Ball icon (square glow) -->
+    <div style="position:absolute;left:75px;top:231px;width:88px;height:95px">
+      <div style="position:absolute;inset:0;border-radius:14px;box-shadow:0 0 6px 3px rgba(253,194,164,0.85);pointer-events:none"></div>
+      <div class="clip pulse" style="position:absolute;left:19px;top:33px;width:51px;height:45px;overflow:hidden">
+        <img src="images/ball.png" alt="ball" style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+      </div>
+    </div>
+
+    <!-- Collar icon -->
+    <div style="position:absolute;left:246px;top:252px;width:71px;height:70px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/collar.png" alt="collar" style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeBuddyText4" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== HOME BUDDY 5 SCREEN ===== -->
+  <div class="screen hidden" id="homeBuddy5Screen">
+
+    <img class="layer" src="images/backgroundhome.png" alt="" style="top:8px" />
+    <img class="layer" src="images/squares.png" alt="" style="top:24px" />
+
+    <!-- Food icon -->
+    <div style="position:absolute;left:86px;top:112px;width:67px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/food.png" alt="food" style="position:absolute;width:393px;height:852px;left:-86px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Water icon -->
+    <div style="position:absolute;left:254px;top:112px;width:57px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/WATER.png" alt="water" style="position:absolute;width:393px;height:852px;left:-254px;top:-88px" />
+      </div>
+    </div>
+
+    <!-- Ball icon -->
+    <div style="position:absolute;left:94px;top:264px;width:51px;height:45px">
+      <div class="clip" style="position:absolute;inset:0;overflow:hidden">
+        <img src="images/ball.png" alt="ball" style="position:absolute;width:393px;height:852px;left:-91px;top:-239px" />
+      </div>
+    </div>
+
+    <!-- Collar icon (square glow - walk icon) -->
+    <div style="position:absolute;left:238px;top:231px;width:85px;height:95px">
+      <div style="position:absolute;inset:0;border-radius:14px;box-shadow:0 0 6px 3px rgba(253,194,164,0.85);pointer-events:none"></div>
+      <div class="clip pulse" style="position:absolute;left:8px;top:21px;width:71px;height:70px;overflow:hidden">
+        <img src="images/collar.png" alt="collar" style="position:absolute;width:393px;height:852px;left:-246px;top:-225px" />
+      </div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="homeBuddyText5" style="top:529px"></div>
+
+  </div>
+
+  <!-- ===== FOOD TASK SCREEN ===== -->
+  <div class="screen hidden" id="foodTaskScreen">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Food dog illustration -->
+    <audio id="fooddogBark" src="images/fooddogbark.mp3" preload="auto"></audio>
+    <img id="fooddogImg" class="layer" style="left:30px;cursor:pointer;pointer-events:auto" src="images/fooddog.png" alt="" onclick="this.classList.remove('fooddog-pulse');void this.offsetWidth;this.classList.add('fooddog-pulse');document.getElementById('fooddogBark').currentTime=0;document.getElementById('fooddogBark').play()" />
+
+    <!-- Brown card panel -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Food Time title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25),0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Food Time</p>
+
+    <!-- Home button -->
+    <div onclick="showScreen('homeScreen')" style="position:absolute;left:38px;top:28px;width:40px;height:40px;cursor:pointer;background:rgba(255,195,167,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1">âŒ‚</div>
+
+    <!-- Entries container (scrollable) -->
+    <div id="foodEntries" style="position:absolute;left:86px;top:92px;width:233px;height:365px;overflow-y:auto;overflow-x:hidden;"></div>
+
+    <!-- Add time button -->
+    <div onclick="addEntry('food')" style="position:absolute;left:140px;top:465px;width:116px;height:34px;background:rgba(255,195,167,0.2);border-radius:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Comfortaa',sans-serif;font-size:18px;color:#ffc3a7;user-select:none;border:2px solid rgba(255,195,167,0.4)">+ add time</div>
+
+    <!-- Point score label -->
+    <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="foodScoreDisplay">0</span></p>
 
     <!-- Buddy icon bottom-right -->
-    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px">
-      <div style="position:absolute;inset:0;overflow:hidden">
-        <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
-      </div>
+    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
+      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
+    </div>
+
+  </div>
+
+  <!-- ===== WATER TASK SCREEN ===== -->
+  <div class="screen hidden" id="waterTaskScreen">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Watercat illustration -->
+    <audio id="watercatMeow" src="images/playcatmeow2.mp3" preload="auto"></audio>
+    <img id="watercatImg" class="layer" style="left:26px;cursor:pointer;pointer-events:auto" src="images/watercat.png" alt="" onclick="this.classList.remove('watercat-pop');void this.offsetWidth;this.classList.add('watercat-pop');document.getElementById('watercatMeow').currentTime=0;document.getElementById('watercatMeow').play()" />
+
+    <!-- Brown card panel -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Drink Time title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25),0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Drink Time</p>
+
+    <!-- Home button -->
+    <div onclick="showScreen('homeScreen')" style="position:absolute;left:38px;top:28px;width:40px;height:40px;cursor:pointer;background:rgba(255,195,167,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1">âŒ‚</div>
+
+    <!-- Entries container (scrollable) -->
+    <div id="waterEntries" style="position:absolute;left:86px;top:92px;width:233px;height:365px;overflow-y:auto;overflow-x:hidden;"></div>
+
+    <!-- Add time button -->
+    <div onclick="addEntry('water')" style="position:absolute;left:140px;top:465px;width:116px;height:34px;background:rgba(255,195,167,0.2);border-radius:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Comfortaa',sans-serif;font-size:18px;color:#ffc3a7;user-select:none;border:2px solid rgba(255,195,167,0.4)">+ add time</div>
+
+    <!-- Point score label -->
+    <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="waterScoreDisplay">0</span></p>
+
+    <!-- Buddy icon bottom-right -->
+    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
+      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
+    </div>
+
+  </div>
+
+  <!-- ===== PLAY TASK SCREEN ===== -->
+  <div class="screen hidden" id="playTaskScreen">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Playcat illustration -->
+    <audio id="catPurr" src="images/catpurr.mp3" preload="auto"></audio>
+    <img id="playcatImg" class="layer" style="cursor:pointer;pointer-events:auto" src="images/playcat.png" alt="" onclick="var a=document.getElementById('catPurr');this.classList.remove('watercat-pop');void this.offsetWidth;this.classList.add('watercat-pop');a.currentTime=0;a.play();setTimeout(function(){a.pause();a.currentTime=0;},1500)" />
+
+    <!-- Brown card panel -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Play Time title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25),0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Play Time</p>
+
+    <!-- Home button -->
+    <div onclick="showScreen('homeScreen')" style="position:absolute;left:38px;top:28px;width:40px;height:40px;cursor:pointer;background:rgba(255,195,167,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1">&#8962;</div>
+
+    <!-- Entries container (scrollable) -->
+    <div id="playEntries" style="position:absolute;left:86px;top:92px;width:233px;height:365px;overflow-y:auto;overflow-x:hidden;"></div>
+
+    <!-- Add time button -->
+    <div onclick="addEntry('play')" style="position:absolute;left:140px;top:465px;width:116px;height:34px;background:rgba(255,195,167,0.2);border-radius:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Comfortaa',sans-serif;font-size:18px;color:#ffc3a7;user-select:none;border:2px solid rgba(255,195,167,0.4)">+ add time</div>
+
+    <!-- Point score label -->
+    <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="playScoreDisplay">0</span></p>
+
+    <!-- Buddy icon bottom-right -->
+    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
+      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
+    </div>
+
+  </div>
+
+  <!-- ===== WALK TASK SCREEN ===== -->
+  <div class="screen hidden" id="walkTaskScreen">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Walk dog illustration -->
+    <img id="walkdogImg" class="layer" src="images/walkdog.png" alt="" />
+
+    <!-- Brown card panel -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Walk Time title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25),0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Walk Time</p>
+
+    <!-- Home button -->
+    <div onclick="showScreen('homeScreen')" style="position:absolute;left:38px;top:28px;width:40px;height:40px;cursor:pointer;background:rgba(255,195,167,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1">&#8962;</div>
+
+    <!-- Entries container (scrollable) -->
+    <div id="walkEntries" style="position:absolute;left:86px;top:92px;width:233px;height:365px;overflow-y:auto;overflow-x:hidden;"></div>
+
+    <!-- Add time button -->
+    <div onclick="addEntry('walk')" style="position:absolute;left:140px;top:465px;width:116px;height:34px;background:rgba(255,195,167,0.2);border-radius:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Comfortaa',sans-serif;font-size:18px;color:#ffc3a7;user-select:none;border:2px solid rgba(255,195,167,0.4)">+ add time</div>
+
+    <!-- Point score label -->
+    <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="walkScoreDisplay">0</span></p>
+
+    <!-- Buddy icon bottom-right -->
+    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
+      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
     </div>
 
   </div>
@@ -1163,6 +1646,241 @@
 
   </div>
 
+  <!-- ===== REWARDS BUDDY TUTORIAL SCREEN ===== -->
+  <div class="screen hidden" id="rewardsBuddyScreen">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Brown card panel (static backdrop) -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Rewards title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Rewards</p>
+
+    <!-- Sample rows matching actual rewards screen layout -->
+    <div style="position:absolute;left:86px;top:92px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+    <div style="position:absolute;left:86px;top:179px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+    <div style="position:absolute;left:86px;top:257px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="rewardsBuddyText" style="top:539px"></div>
+
+  </div>
+
+  <!-- ===== REWARDS BUDDY TUTORIAL SCREEN 2 ===== -->
+  <div class="screen hidden" id="rewardsBuddyScreen2">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Brown card panel (static backdrop) -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Rewards title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Rewards</p>
+
+    <!-- Sample rows matching actual rewards screen layout -->
+    <div style="position:absolute;left:86px;top:92px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+    <div style="position:absolute;left:86px;top:179px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+    <div style="position:absolute;left:86px;top:257px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="rewardsBuddyText2" style="top:539px"></div>
+
+  </div>
+
+  <!-- ===== REWARDS BUDDY TUTORIAL SCREEN 3 ===== -->
+  <div class="screen hidden" id="rewardsBuddyScreen3">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Brown card panel (static backdrop) -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Rewards title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Rewards</p>
+
+    <!-- Sample rows matching actual rewards screen layout -->
+    <div style="position:absolute;left:86px;top:92px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+    <div style="position:absolute;left:86px;top:179px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+    <div style="position:absolute;left:86px;top:257px;width:233px;height:57px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;">
+      <input type="text" disabled placeholder="reward name" style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;" />
+      <input type="number" disabled placeholder="pts" style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;font-family:'Comfortaa',sans-serif;font-size:14px;color:#4b200c;text-align:right;" />
+      <div style="position:absolute;right:6px;top:10px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>
+    </div>
+
+    <!-- Buddy -->
+    <div class="clip buddy-animate" style="left:153px;top:639px;width:240px;height:221px">
+      <img src="images/buddy_both_eyes.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-153px;top:-631px" />
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="clip bubble-animate" style="left:86px;top:495px;width:290px;height:180px">
+      <img src="images/bubble.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-86px;top:-487px" />
+    </div>
+
+    <!-- Bubble text -->
+    <div class="buddy-text clickable" id="rewardsBuddyText3" style="top:539px"></div>
+
+  </div>
+
+  <!-- ===== REWARDS SCREEN ===== -->
+  <div class="screen hidden" id="rewardsScreen">
+
+    <!-- Orange background -->
+    <img class="layer" src="images/backgroundhome.png" alt="" />
+
+    <!-- Brown card panel -->
+    <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
+      <img src="images/background_tab.png" alt=""
+           style="position:absolute;width:393px;height:852px;left:-32px;top:-20px" />
+    </div>
+
+    <!-- Rewards title -->
+    <p style="position:absolute;left:110px;top:31px;font-family:'Comfortaa',sans-serif;font-size:36px;color:#ffc3a7;text-shadow:0 4px 4px rgba(0,0,0,0.25),0 4px 4px rgba(0,0,0,0.25);margin:0;white-space:nowrap">Rewards</p>
+
+    <!-- Home button -->
+    <div onclick="showScreen('homeScreen')" style="position:absolute;left:38px;top:28px;width:40px;height:40px;cursor:pointer;background:rgba(255,195,167,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1">&#8962;</div>
+
+    <!-- Entries container (scrollable) -->
+    <div id="rewardEntries" style="position:absolute;left:86px;top:92px;width:233px;height:365px;overflow-y:auto;overflow-x:hidden;"></div>
+
+    <!-- Add reward button -->
+    <div onclick="addReward()" style="position:absolute;left:122px;top:465px;width:148px;height:34px;background:rgba(255,195,167,0.2);border-radius:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Comfortaa',sans-serif;font-size:18px;color:#ffc3a7;user-select:none;border:2px solid rgba(255,195,167,0.4)">+ add reward</div>
+
+    <!-- Point score label -->
+    <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="rewardScoreDisplay">0</span></p>
+
+    <!-- Buddy icon bottom-right (clickable → tutorial) -->
+    <div onclick="showScreen('rewardsBuddyScreen')" style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden;cursor:pointer">
+      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
+    </div>
+
+  </div>
+
+  <audio id="bubblePop" src="images/bubblepop.mp3" preload="auto"></audio>
+
   <script src="sketch.js"></script>
-</body>
-</html>
+  <script>
+    document.querySelectorAll('.screen').forEach(function(screen) {
+      screen.addEventListener('click', function(e) {
+        var target = e.target;
+        if (target.closest('.buddy-text')) return;
+        var animalIds = ['fooddogImg','watercatImg','playcatImg','walkdogImg'];
+        if (animalIds.indexOf(target.id) !== -1) return;
+        var clickable = target.closest('[onclick], [id$="Icon"], [id$="Paw1"], [id$="Paw2"], [id$="Paw3"], .btn, .clickable');
+        if (clickable || getComputedStyle(target).cursor === 'pointer') {
+          var pop = document.getElementById('bubblePop');
+          pop.currentTime = 0;
+          pop.play();
+        }
+      });
+    });
+
+    // Typing sound via Web Audio API
+    (function() {
+      var _audioCtx = null;
+      var _lastKeyTime = 0;
+
+      function getAudioCtx() {
+        if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        return _audioCtx;
+      }
+
+      function playTypingClick() {
+        var now = Date.now();
+        if (now - _lastKeyTime < 40) return; // throttle rapid repeats
+        _lastKeyTime = now;
+        try {
+          var ctx = getAudioCtx();
+          var buf = ctx.createBuffer(1, ctx.sampleRate * 0.04, ctx.sampleRate);
+          var data = buf.getChannelData(0);
+          for (var i = 0; i < data.length; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 8);
+          }
+          var src = ctx.createBufferSource();
+          src.buffer = buf;
+          var gain = ctx.createGain();
+          gain.gain.setValueAtTime(0.18, ctx.currentTime);
+          src.connect(gain);
+          gain.connect(ctx.destination);
+          src.start();
+        } catch(e) {}
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+          playTypingClick();
+        }
+      });
+    })();
+  </script>

@@ -1,3 +1,74 @@
+var pointScore = 0;
+
+function animateTabScreen(screenId) {
+  var screen = document.getElementById(screenId);
+  if (!screen) return;
+
+  // Animate animal image
+  var animal = screen.querySelector('.layer[src*="fooddog"], .layer[src*="watercat"], .layer[src*="playcat"], .layer[src*="walkdog"]');
+  if (animal) {
+    animal.classList.remove('animal-enter');
+    void animal.offsetWidth;
+    animal.classList.add('animal-enter');
+  }
+
+  // Animate paw buttons with stagger
+  var paws = screen.querySelectorAll('[id$="Paw1"],[id$="Paw2"],[id$="Paw3"]');
+  paws.forEach(function(paw, i) {
+    paw.classList.remove('paw-enter');
+    void paw.offsetWidth;
+    paw.classList.add('paw-enter');
+    paw.style.animationDelay = (0.1 + i * 0.1) + 's';
+  });
+}
+
+function playDing() {
+  var sfx = document.getElementById('dingSfx');
+  if (sfx) { sfx.currentTime = 0; sfx.play(); }
+}
+
+function showPointsFloat(anchorEl) {
+  var rect = anchorEl.getBoundingClientRect();
+  var screen = anchorEl.closest('.screen');
+  var screenRect = screen.getBoundingClientRect();
+
+  // +5 label — in brown card panel, left of the light box (card=32px, box=86px)
+  var el = document.createElement('div');
+  el.className = 'points-float';
+  el.textContent = '+5';
+  el.style.left = '42px';
+  el.style.top  = (rect.top  - screenRect.top  + 4) + 'px';
+  screen.appendChild(el);
+  var textDing = document.getElementById('textDingSfx');
+  if (textDing) { textDing.currentTime = 0; textDing.play(); }
+  setTimeout(function() { if (el.parentNode) el.remove(); }, 1700);
+
+  // Sparkles radiating outward from same spot
+  var sparks = ['✦','✦','✦','✦','✦'];
+  var angles = [315, 270, 225, 180, 135];
+  sparks.forEach(function(char, i) {
+    var s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = char;
+    var cx = 52;
+    var cy = rect.top - screenRect.top + 10;
+    s.style.left = cx + 'px';
+    s.style.top  = cy + 'px';
+    var rad = angles[i] * Math.PI / 180;
+    var dist = 22 + Math.random() * 10;
+    s.style.setProperty('--sx', Math.round(Math.cos(rad) * dist) + 'px');
+    s.style.setProperty('--sy', Math.round(Math.sin(rad) * dist) + 'px');
+    s.style.animationDelay = (i * 0.05) + 's';
+    screen.appendChild(s);
+    setTimeout(function() { if (s.parentNode) s.remove(); }, 900);
+  });
+}
+
+function updateScoreDisplays() {
+  var displays = document.querySelectorAll('#homeScoreDisplay, #foodScoreDisplay, #waterScoreDisplay, #playScoreDisplay, #walkScoreDisplay, #rewardScoreDisplay');
+  displays.forEach(function(el) { el.textContent = pointScore; });
+}
+
 function scaleScreen() {
   var screens = document.querySelectorAll('.screen');
   var scale = Math.min(window.innerWidth / 393, window.innerHeight / 852);
@@ -74,6 +145,43 @@ function showScreen(id) {
     ]);
   } else if (id === 'homeScreen') {
     // main home screen — no buddy
+  } else if (id === 'homeBuddy2Screen') {
+    animateBuddyScreen(screen, 'homeBuddyText2', [
+      { words: "In the top left corner is the".split(' '), indent: 0 },
+      { words: "food bowl. It'll take ya to the".split(' '), indent: 0 },
+      { words: "food tab!".split(' '), indent: 0 }
+    ]);
+  } else if (id === 'homeBuddy3Screen') {
+    animateBuddyScreen(screen, 'homeBuddyText3', [
+      { words: "The food tab is where you put".split(' '), indent: 0 },
+      { words: "in the times you're feeding".split(' '), indent: 0 },
+      { words: "your pet.".split(' '), indent: 50 }
+    ]);
+  } else if (id === 'homeBuddyWaterScreen') {
+    animateBuddyScreen(screen, 'homeBuddyTextWater', [
+      { words: "In the top right is the water".split(' '), indent: 0 },
+      { words: "bowl. It'll take ya to the".split(' '), indent: 0 },
+      { words: "water tab!".split(' '), indent: 0 }
+    ]);
+  } else if (id === 'homeBuddyWater2Screen') {
+    animateBuddyScreen(screen, 'homeBuddyTextWater2', [
+      { words: "where you put in the times".split(' '), indent: 0 },
+      { words: "you give your pet water".split(' '), indent: 0 }
+    ]);
+  } else if (id === 'homeBuddy4Screen') {
+    animateBuddyScreen(screen, 'homeBuddyText4', [
+      { words: "bottom left is the play icon.".split(' '), indent: 0 },
+      { words: "It'll take ya to the play tab".split(' '), indent: 0 },
+      { words: "where you input your pet's".split(' '), indent: 0 },
+      { words: "play times".split(' '), indent: 30 }
+    ]);
+  } else if (id === 'homeBuddy5Screen') {
+    animateBuddyScreen(screen, 'homeBuddyText5', [
+      { words: "and finally bottom right is the".split(' '), indent: 0 },
+      { words: "walk icon. It'll take ya to the".split(' '), indent: 0 },
+      { words: "walk tab, and there you put in".split(' '), indent: 0 },
+      { words: "your walk times".split(' '), indent: 20 }
+    ]);
   } else if (id === 'collarTaskScreen') {
     animateBuddyScreen(screen, 'collarTaskText', [
       { words: "clicking on icons will take you".split(' '), indent: 0 },
@@ -294,6 +402,21 @@ function showScreen(id) {
     animateBuddyScreen(screen, 'pawFarewellText2', [
       { words: 'but have a lot of love to give!'.split(' '), indent: 0 }
     ]);
+  } else if (id === 'rewardsBuddyScreen') {
+    animateBuddyScreen(screen, 'rewardsBuddyText', [
+      { words: "this is your rewards screen.".split(' '), indent: 0 },
+      { words: "you and your parent can input".split(' '), indent: 0 }
+    ]);
+  } else if (id === 'rewardsBuddyScreen2') {
+    animateBuddyScreen(screen, 'rewardsBuddyText2', [
+      { words: "Once you get the points".split(' '), indent: 0 },
+      { words: "required tap the paw to claim it!".split(' '), indent: 0 }
+    ]);
+  } else if (id === 'rewardsBuddyScreen3') {
+    animateBuddyScreen(screen, 'rewardsBuddyText3', [
+      { words: "it'll refresh and then you can".split(' '), indent: 0 },
+      { words: "enter in a new one.".split(' '), indent: 30 }
+    ]);
   }
 }
 
@@ -342,11 +465,71 @@ document.addEventListener('click', function(e) {
     showScreen('pawFarewellScreen2');
   } else if (e.target.closest('#pawFarewellText2')) {
     showScreen('homeScreen');
+  } else if (e.target.closest('#homeBuddyText')) {
+    showScreen('homeBuddy2Screen');
+  } else if (e.target.closest('#homeBuddyText2')) {
+    showScreen('homeBuddy3Screen');
+  } else if (e.target.closest('#homeBuddyText3')) {
+    showScreen('homeBuddyWaterScreen');
+  } else if (e.target.closest('#homeBuddyTextWater')) {
+    showScreen('homeBuddyWater2Screen');
+  } else if (e.target.closest('#homeBuddyTextWater2')) {
+    showScreen('homeBuddy4Screen');
+  } else if (e.target.closest('#homeBuddyText4')) {
+    showScreen('homeBuddy5Screen');
+  } else if (e.target.closest('#homeBuddyText5')) {
+    ['homeBuddy', 'homeBubble', 'homeBuddyText'].forEach(function(elId) {
+      var el = document.getElementById(elId);
+      if (el) el.style.display = 'none';
+    });
+    var btn = document.getElementById('homeBuddyIconBtn');
+    if (btn) btn.style.display = '';
+    showScreen('homeScreen');
+  } else if (e.target.closest('#rewardsBuddyText')) {
+    showScreen('rewardsBuddyScreen2');
+  } else if (e.target.closest('#rewardsBuddyText2')) {
+    showScreen('rewardsBuddyScreen3');
+  } else if (e.target.closest('#rewardsBuddyText3')) {
+    showScreen('rewardsScreen');
   }
 });
 
 document.getElementById('skipBtn').addEventListener('click', function () {
   showScreen('homeScreen');
+});
+
+document.getElementById('homeBuddyIconBtn').addEventListener('click', function () {
+  var screen = document.getElementById('homeScreen');
+  ['homeBuddy', 'homeBubble', 'homeBuddyText'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = '';
+  });
+  this.style.display = 'none';
+  animateBuddyScreen(screen, 'homeBuddyText', [
+    { words: "Hey there pal! still a little".split(' '), indent: 0 },
+    { words: "confused? I'll tell ya about the".split(' '), indent: 0 },
+    { words: "icons.".split(' '), indent: 0 }
+  ]);
+});
+
+document.getElementById('foodIcon').addEventListener('click', function () {
+  showScreen('foodTaskScreen');
+  animateTabScreen('foodTaskScreen');
+});
+
+document.getElementById('waterIcon').addEventListener('click', function () {
+  showScreen('waterTaskScreen');
+  animateTabScreen('waterTaskScreen');
+});
+
+document.getElementById('ballIcon').addEventListener('click', function () {
+  showScreen('playTaskScreen');
+  animateTabScreen('playTaskScreen');
+});
+
+document.getElementById('homeCollarIcon').addEventListener('click', function () {
+  showScreen('walkTaskScreen');
+  animateTabScreen('walkTaskScreen');
 });
 
 // Paw 1 click navigates to paw1ClickedScreen
@@ -367,5 +550,181 @@ document.getElementById('pawBtn3').addEventListener('click', function() {
   showScreen('paw3ClickedScreen');
 });
 
+// ===== DYNAMIC TAB ENTRIES =====
+var tabEntryCounts = { food: 0, water: 0, play: 0, walk: 0 };
+var tabEntryClicked = {};
 
+var tabLabels = {
+  food:  { title: 'Food Time! 🥩',  body: 'Time to feed your pet!' },
+  water: { title: 'Drink Time! 💧', body: "Fill up your pet's water bowl!" },
+  play:  { title: 'Play Time! 🎾',  body: 'Your pet wants to play!' },
+  walk:  { title: 'Walk Time! 🐾',  body: 'Time to take your pet for a walk!' }
+};
 
+function setupEntryPaw(tab, n) {
+  var pawEl   = document.getElementById(tab + 'Paw'   + n);
+  var checkEl = document.getElementById(tab + 'Check' + n);
+  if (!pawEl || !checkEl) return;
+  pawEl.addEventListener('click', function () {
+    var key = tab + '-' + n;
+    if (tabEntryClicked[key]) return;
+    var timeInput = document.getElementById(tab + 'Time' + n);
+    if (!timeInput || !timeInput.value) { if (timeInput) timeInput.focus(); return; }
+    tabEntryClicked[key] = true;
+    pawEl.style.display = 'none';
+    checkEl.style.display = '';
+    checkEl.classList.add('checkmark-animate');
+    setTimeout(playDing, 300);
+    setTimeout(function () { showPointsFloat(checkEl); }, 650);
+    pointScore += 5;
+    updateScoreDisplays();
+  });
+}
+
+function addEntry(tab) {
+  var n = ++tabEntryCounts[tab];
+  var container = document.getElementById(tab + 'Entries');
+  if (!container) return;
+
+  var row = document.createElement('div');
+  row.style.cssText = 'position:relative;height:57px;margin-bottom:9px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;flex-shrink:0';
+
+  row.innerHTML =
+    '<div id="' + tab + 'Paw' + n + '" style="position:absolute;left:9px;top:9px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));cursor:pointer"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>' +
+    '<div id="' + tab + 'Check' + n + '" style="display:none;position:absolute;left:4px;top:12px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" /></div></div>' +
+    '<input id="' + tab + 'Time' + n + '" type="time" style="position:absolute;left:50px;top:9px;width:170px;height:34px;" />';
+
+  container.appendChild(row);
+  setupEntryPaw(tab, n);
+
+  var lbl = tabLabels[tab];
+  _taskNotifications.push({ id: tab + 'Time' + n, title: lbl.title, body: lbl.body });
+
+  container.scrollTop = container.scrollHeight;
+}
+
+function initAllTabs() {
+  ['food', 'water', 'play', 'walk'].forEach(function (tab) {
+    addEntry(tab); addEntry(tab); addEntry(tab);
+  });
+}
+
+// ===== REWARDS =====
+var rewardCount = 0;
+var rewardsTutorialSeen = false;
+
+function goToRewards() {
+  if (!rewardsTutorialSeen) {
+    rewardsTutorialSeen = true;
+    showScreen('rewardsBuddyScreen');
+  } else {
+    showScreen('rewardsScreen');
+  }
+}
+
+function addReward() {
+  var n = ++rewardCount;
+  var container = document.getElementById('rewardEntries');
+  if (!container) return;
+
+  var row = document.createElement('div');
+  row.style.cssText = 'position:relative;height:57px;margin-bottom:9px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;flex-shrink:0';
+
+  row.innerHTML =
+    '<input id="rewardName' + n + '" type="text" placeholder="reward name" maxlength="16"' +
+    ' style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;' +
+    'font-family:Comfortaa,sans-serif;font-size:14px;color:#4b200c;" />' +
+    '<input id="rewardPts' + n + '" type="number" min="0" placeholder="pts" ' +
+    ' style="position:absolute;left:137px;top:10px;width:55px;height:32px;background:transparent;border:none;outline:none;' +
+    'font-family:Comfortaa,sans-serif;font-size:14px;color:#4b200c;text-align:right;" />' +
+    '<div onclick="claimReward(' + n + ')" style="position:absolute;right:6px;top:10px;width:29px;height:34px;' +
+    'filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));cursor:pointer" title="Claim reward">' +
+    '<div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>';
+
+  container.appendChild(row);
+  container.scrollTop = container.scrollHeight;
+}
+
+function claimReward(n) {
+  var nameEl = document.getElementById('rewardName' + n);
+  var ptsEl  = document.getElementById('rewardPts' + n);
+  if (!ptsEl) return;
+  var cost = parseInt(ptsEl.value, 10);
+  if (isNaN(cost) || cost <= 0) { alert('Enter the points needed for this reward!'); return; }
+  if (pointScore < cost) { alert('Not enough points yet! Keep going! 🐾'); return; }
+  var name = (nameEl && nameEl.value.trim()) ? nameEl.value.trim() : 'reward';
+  pointScore -= cost;
+  updateScoreDisplays();
+  alert('🎉 You claimed: ' + name + '!');
+}
+
+function initRewards() {
+  addReward(); addReward(); addReward();
+}
+
+// ===== NOTIFICATIONS =====
+var _notifiedTimes = {};
+
+var _taskNotifications = [];
+
+initAllTabs();
+initRewards();
+
+function checkTaskNotifications() {
+  var now = new Date();
+  var hh = String(now.getHours()).padStart(2, '0');
+  var mm = String(now.getMinutes()).padStart(2, '0');
+  var currentTime = hh + ':' + mm;
+
+  _taskNotifications.forEach(function(task) {
+    var input = document.getElementById(task.id);
+    if (!input || !input.value) return;
+    var key = task.id + '_' + input.value;
+    if (input.value === currentTime && !_notifiedTimes[key]) {
+      _notifiedTimes[key] = true;
+      showToast(task.title, task.body);
+      if (Notification.permission === 'granted') {
+        new Notification(task.title, { body: task.body, icon: 'images/buddyicon.png' });
+      }
+    }
+    if (input.value !== currentTime && _notifiedTimes[key]) {
+      delete _notifiedTimes[key];
+    }
+  });
+}
+
+function showToast(title, body) {
+  var overlay = document.getElementById('toastOverlay');
+  var toast = document.createElement('div');
+  toast.innerHTML = '<strong>' + title + '</strong><br>' + body;
+  toast.style.cssText = [
+    'position:absolute',
+    'top:' + (24 + overlay.childElementCount * 80) + 'px',
+    'background:#5c3d2a',
+    'color:#fdc2a4',
+    'font-family:Comfortaa,sans-serif',
+    'font-size:15px',
+    'padding:14px 22px',
+    'border-radius:16px',
+    'box-shadow:0 4px 16px rgba(0,0,0,0.35)',
+    'text-align:center',
+    'pointer-events:none',
+    'opacity:1',
+    'transition:opacity 0.5s ease',
+    'white-space:nowrap'
+  ].join(';');
+  overlay.appendChild(toast);
+  setTimeout(function() { toast.style.opacity = '0'; }, 4000);
+  setTimeout(function() {
+    if (toast.parentNode) toast.remove();
+    // Restack remaining toasts
+    Array.from(overlay.children).forEach(function(t, i) {
+      t.style.top = (24 + i * 80) + 'px';
+    });
+  }, 4600);
+}
+
+if ('Notification' in window) {
+  Notification.requestPermission();
+}
+setInterval(checkTaskNotifications, 1000);

@@ -184,3 +184,97 @@ body {
 #beginBtn { top: 579px; }
 #skipBtn  { top: 657px; }
 #quitBtn  { top: 735px; }
+
+/* Task tab animal slide-in */
+@keyframes animal-slide-in {
+  from { transform: translateY(80px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.animal-enter {
+  animation: animal-slide-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Task tab paw pop-in */
+@keyframes paw-pop-in {
+  0%   { opacity: 0; transform: scale(0.5); }
+  70%  { transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.paw-enter {
+  opacity: 0;
+  animation: paw-pop-in 0.35s ease-out forwards;
+}
+
+/* +5 float-up */
+@keyframes points-float {
+  0%   { opacity: 1; transform: translateY(0); }
+  70%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-55px); }
+}
+
+.points-float {
+  position: absolute;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffc3a7;
+  pointer-events: none;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  animation: points-float 1.6s ease-out forwards;
+  z-index: 999;
+}
+
+/* Sparkle */
+@keyframes sparkle-burst {
+  0%   { opacity: 1; transform: translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0); }
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 12px;
+  pointer-events: none;
+  animation: sparkle-burst 0.8s ease-out forwards;
+  z-index: 1000;
+  color: #ffc3a7;
+}
+
+/* Watercat click pop */
+@keyframes watercat-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.1); }
+  70%  { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+/* Fooddog click pulse */
+@keyframes fooddog-pulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.1); }
+  70%  { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+.fooddog-pulse {
+  animation: fooddog-pulse 0.4s ease-out;
+}
+
+.watercat-pop {
+  animation: watercat-pop 0.4s ease-out;
+}
+
+/* Home screen icon hover pulse */
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.15); }
+}
+
+#foodIcon:hover,
+#waterIcon:hover,
+#ballIcon:hover,
+#homeCollarIcon:hover {
+  animation: icon-pulse 1.2s ease-in-out infinite;
+  transform-origin: center;
+}
