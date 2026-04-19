@@ -173,14 +173,14 @@ function showScreen(id) {
       { words: "bottom left is the play icon.".split(' '), indent: 0 },
       { words: "It'll take ya to the play tab".split(' '), indent: 0 },
       { words: "where you input your pet's".split(' '), indent: 0 },
-      { words: "play times".split(' '), indent: 30 }
+      { words: "play times".split(' '), indent: 60 }
     ]);
   } else if (id === 'homeBuddy5Screen') {
     animateBuddyScreen(screen, 'homeBuddyText5', [
       { words: "and finally bottom right is the".split(' '), indent: 0 },
       { words: "walk icon. It'll take ya to the".split(' '), indent: 0 },
       { words: "walk tab, and there you put in".split(' '), indent: 0 },
-      { words: "your walk times".split(' '), indent: 20 }
+      { words: "your walk times".split(' '), indent: 60 }
     ]);
   } else if (id === 'collarTaskScreen') {
     animateBuddyScreen(screen, 'collarTaskText', [
@@ -405,12 +405,14 @@ function showScreen(id) {
   } else if (id === 'rewardsBuddyScreen') {
     animateBuddyScreen(screen, 'rewardsBuddyText', [
       { words: "this is your rewards screen.".split(' '), indent: 0 },
-      { words: "you and your parent can input".split(' '), indent: 0 }
+      { words: "you and your parent can input".split(' '), indent: 0 },
+      { words: "rewards up above!".split(' '), indent: 20 }
     ]);
   } else if (id === 'rewardsBuddyScreen2') {
     animateBuddyScreen(screen, 'rewardsBuddyText2', [
       { words: "Once you get the points".split(' '), indent: 0 },
-      { words: "required tap the paw to claim it!".split(' '), indent: 0 }
+      { words: "required tap the paw to claim".split(' '), indent: 0 },
+      { words: "it!".split(' '), indent: 40 }
     ]);
   } else if (id === 'rewardsBuddyScreen3') {
     animateBuddyScreen(screen, 'rewardsBuddyText3', [
@@ -592,7 +594,8 @@ function addEntry(tab) {
   row.innerHTML =
     '<div id="' + tab + 'Paw' + n + '" style="position:absolute;left:9px;top:9px;width:29px;height:34px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));cursor:pointer"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/paw.png" alt="" style="position:absolute;width:207px;height:449px;left:-19px;top:-228px" /></div></div>' +
     '<div id="' + tab + 'Check' + n + '" style="display:none;position:absolute;left:4px;top:12px;width:46px;height:27px;filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25))"><div style="position:absolute;inset:0;overflow:hidden"><img src="images/checkmark.png" alt="" style="position:absolute;width:393px;height:852px;left:-37px;top:-370px" /></div></div>' +
-    '<input id="' + tab + 'Time' + n + '" type="time" style="position:absolute;left:50px;top:9px;width:170px;height:34px;" />';
+    '<input id="' + tab + 'Time' + n + '" type="time" style="position:absolute;left:50px;top:9px;width:155px;height:34px;" />' +
+    '<div onclick="this.parentNode.remove()" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:22px;height:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(75,32,12,0.15);font-size:14px;color:#4b200c;font-family:sans-serif;line-height:1;user-select:none">&#x2715;</div>';
 
   container.appendChild(row);
   setupEntryPaw(tab, n);
@@ -631,7 +634,7 @@ function addReward() {
   row.style.cssText = 'position:relative;height:57px;margin-bottom:9px;background-image:url(images/box.png);background-size:393px 852px;background-position:-81px -87px;border-radius:10px;flex-shrink:0';
 
   row.innerHTML =
-    '<input id="rewardName' + n + '" type="text" placeholder="reward name" maxlength="16"' +
+    '<input id="rewardName' + n + '" type="text" placeholder="enter reward" maxlength="16"' +
     ' style="position:absolute;left:9px;top:10px;width:120px;height:32px;background:transparent;border:none;outline:none;' +
     'font-family:Comfortaa,sans-serif;font-size:14px;color:#4b200c;" />' +
     '<input id="rewardPts' + n + '" type="number" min="0" placeholder="pts" ' +
