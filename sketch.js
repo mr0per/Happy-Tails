@@ -84,9 +84,23 @@ function scaleScreen() {
 scaleScreen();
 window.addEventListener('resize', scaleScreen);
 
-function animateBuddyScreen(screenEl, textElId, lines) {
-  var animated = screenEl.querySelectorAll('.buddy-animate, .bubble-animate, .checkmark-animate');
-  animated.forEach(function(el) {
+function animateBuddyScreen(screenEl, textElId, lines, buddyMode) {
+  // buddyMode: 'slide' = slide up (first page), 'bounce' = bounce in place, omit/other = static
+  var buddyEls = screenEl.querySelectorAll('.buddy-animate');
+  buddyEls.forEach(function(el) {
+    el.classList.remove('buddy-bounce');
+    el.style.animation = 'none';
+    el.offsetHeight;
+    if (buddyMode === 'slide') {
+      el.style.animation = '';
+    } else if (buddyMode === 'bounce') {
+      el.classList.add('buddy-bounce');
+    }
+    // else static — no animation
+  });
+
+  var nonBuddy = screenEl.querySelectorAll('.bubble-animate, .checkmark-animate');
+  nonBuddy.forEach(function(el) {
     el.style.animation = 'none';
     el.offsetHeight;
     el.style.animation = '';
@@ -111,6 +125,8 @@ function animateBuddyScreen(screenEl, textElId, lines) {
   allSpans.forEach(function(span, i) {
     setTimeout(function() {
       span.classList.add('visible');
+      var snd = new Audio('images/words.mp3');
+      snd.play();
     }, 850 + i * 80);
   });
 }
@@ -125,24 +141,24 @@ function showScreen(id) {
       { words: "Hey there Pal! Heard you got".split(' '), indent: 0 },
       { words: "a furry friend who needs some".split(' '), indent: 0 },
       { words: "taking care of.".split(' '), indent: 20 }
-    ]);
+    ], 'slide');
   } else if (id === 'buddy2Screen') {
     animateBuddyScreen(screen, 'buddyText2', [
       { words: "My name is Buddy, and I'm".split(' '), indent: 0 },
       { words: "here to help ya manage your".split(' '), indent: 0 },
       { words: "pet care duties.".split(' '), indent: 20 }
-    ]);
+    ], 'bounce');
   } else if (id === 'buddy3Screen') {
     animateBuddyScreen(screen, 'buddyText3', [
       { words: "This is your home screen, you'll".split(' '), indent: 0 },
       { words: "be able to access your task".split(' '), indent: 0 },
       { words: "lists through here".split(' '), indent: 20 }
-    ]);
+    ], 'bounce');
   } else if (id === 'tutorialHomeScreen') {
     animateBuddyScreen(screen, 'homeText', [
       { words: "try clicking on the collar icon".split(' '), indent: 0 },
       { words: "to start".split(' '), indent: 20 }
-    ]);
+    ], 'bounce');
   } else if (id === 'homeScreen') {
     // main home screen — no buddy
   } else if (id === 'homeBuddy2Screen') {
@@ -150,52 +166,52 @@ function showScreen(id) {
       { words: "In the top left corner is the".split(' '), indent: 0 },
       { words: "food bowl. It'll take ya to the".split(' '), indent: 0 },
       { words: "food tab!".split(' '), indent: 0 }
-    ]);
+    ], 'slide');
   } else if (id === 'homeBuddy3Screen') {
     animateBuddyScreen(screen, 'homeBuddyText3', [
       { words: "The food tab is where you put".split(' '), indent: 0 },
       { words: "in the times you're feeding".split(' '), indent: 0 },
       { words: "your pet.".split(' '), indent: 50 }
-    ]);
+    ], 'bounce');
   } else if (id === 'homeBuddyWaterScreen') {
     animateBuddyScreen(screen, 'homeBuddyTextWater', [
       { words: "In the top right is the water".split(' '), indent: 0 },
       { words: "bowl. It'll take ya to the".split(' '), indent: 0 },
       { words: "water tab!".split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'homeBuddyWater2Screen') {
     animateBuddyScreen(screen, 'homeBuddyTextWater2', [
       { words: "where you put in the times".split(' '), indent: 0 },
       { words: "you give your pet water".split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'homeBuddy4Screen') {
     animateBuddyScreen(screen, 'homeBuddyText4', [
       { words: "bottom left is the play icon.".split(' '), indent: 0 },
       { words: "It'll take ya to the play tab".split(' '), indent: 0 },
       { words: "where you input your pet's".split(' '), indent: 0 },
       { words: "play times".split(' '), indent: 60 }
-    ]);
+    ], 'bounce');
   } else if (id === 'homeBuddy5Screen') {
     animateBuddyScreen(screen, 'homeBuddyText5', [
       { words: "and finally bottom right is the".split(' '), indent: 0 },
       { words: "walk icon. It'll take ya to the".split(' '), indent: 0 },
       { words: "walk tab, and there you put in".split(' '), indent: 0 },
       { words: "your walk times".split(' '), indent: 60 }
-    ]);
+    ], 'bounce');
   } else if (id === 'collarTaskScreen') {
     animateBuddyScreen(screen, 'collarTaskText', [
       { words: "clicking on icons will take you".split(' '), indent: 0 },
       { words: "to the tab for that icon.".split(' '), indent: 0 }
-    ]);
+    ], 'slide');
   } else if (id === 'walkTabScreen') {
     animateBuddyScreen(screen, 'walkTabText', [
       { words: "In this case you were taken to".split(' '), indent: 0 },
       { words: "the walk tab.".split(' '), indent: 20 }
-    ]);
+    ], 'bounce');
   } else if (id === 'walkPracticeScreen') {
     animateBuddyScreen(screen, 'walkPracticeText', [
       { words: "try entering a time for practice.".split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
     // Enable inputs only after Buddy finishes speaking (~1.5s)
     setTimeout(function() {
       screen.querySelectorAll('input[type="time"]').forEach(function(inp) {
@@ -220,7 +236,7 @@ function showScreen(id) {
       { words: "Way to go Pal! Happy Tails will".split(' '), indent: 0 },
       { words: "send you notifications at".split(' '), indent: 0 },
       { words: "the times you enter here".split(' '), indent: 20 }
-    ]);
+    ], 'bounce');
   } else if (id === 'pawPracticeScreen') {
     // Copy times from walkPracticeScreen
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
@@ -241,7 +257,7 @@ function showScreen(id) {
       { words: "the text to mark a task as".split(' '), indent: 0 },
       { words: "complete. Go on and try it".split(' '), indent: 0 },
       { words: "out for yourself".split(' '), indent: 40 }
-    ]);
+    ], 'bounce');
   } else if (id === 'paw1ClickedScreen') {
     // Copy times from walkPracticeScreen
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
@@ -253,7 +269,7 @@ function showScreen(id) {
       { words: 'complete tasks to earn points!'.split(' '), indent: 0 },
       { words: 'You can use these points for'.split(' '), indent: 0 },
       { words: 'rewards set by your parents.'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'paw2ClickedScreen') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['paw2Time1','paw2Time2','paw2Time3'].forEach(function(tid, i) {
@@ -264,7 +280,7 @@ function showScreen(id) {
       { words: 'complete tasks to earn points!'.split(' '), indent: 0 },
       { words: 'You can use these points for'.split(' '), indent: 0 },
       { words: 'rewards set by your parents.'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'paw3ClickedScreen') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['paw3Time1','paw3Time2','paw3Time3'].forEach(function(tid, i) {
@@ -275,7 +291,7 @@ function showScreen(id) {
       { words: 'complete tasks to earn points!'.split(' '), indent: 0 },
       { words: 'You can use these points for'.split(' '), indent: 0 },
       { words: 'rewards set by your parents.'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'pawHelpScreen') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['pawHelpTime1','pawHelpTime2','pawHelpTime3'].forEach(function(tid, i) {
@@ -298,7 +314,7 @@ function showScreen(id) {
       { words: 'one more thing! if you need'.split(' '), indent: 0 },
       { words: 'help navigating the app or'.split(' '), indent: 0 },
       { words: 'some helpful tips'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'pawHelpScreen2') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['pawHelp2Time1','pawHelp2Time2','pawHelp2Time3'].forEach(function(tid, i) {
@@ -319,7 +335,7 @@ function showScreen(id) {
     animateBuddyScreen(screen, 'pawHelpText2', [
       { words: 'click the white circle'.split(' '), indent: 0 },
       { words: 'with a paw print on it!'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'pawHelpScreen3') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['pawHelp3Time1','pawHelp3Time2','pawHelp3Time3'].forEach(function(tid, i) {
@@ -339,7 +355,7 @@ function showScreen(id) {
     });
     animateBuddyScreen(screen, 'pawHelpText3', [
       { words: "it'll be right where I am currently".split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'pawHelpScreen4') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['pawHelp4Time1','pawHelp4Time2','pawHelp4Time3'].forEach(function(tid, i) {
@@ -360,7 +376,7 @@ function showScreen(id) {
     animateBuddyScreen(screen, 'pawHelpText4', [
       { words: 'and clicking on it will let me'.split(' '), indent: 0 },
       { words: 'pop right up and help!'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'pawFarewellScreen') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['farewellTime1','farewellTime2','farewellTime3'].forEach(function(tid, i) {
@@ -381,7 +397,7 @@ function showScreen(id) {
     animateBuddyScreen(screen, 'pawFarewellText', [
       { words: 'Good luck buddy, and'.split(' '), indent: 0 },
       { words: 'remember pets need a lot of love'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'pawFarewellScreen2') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
     ['farewell2Time1','farewell2Time2','farewell2Time3'].forEach(function(tid, i) {
@@ -401,24 +417,24 @@ function showScreen(id) {
     });
     animateBuddyScreen(screen, 'pawFarewellText2', [
       { words: 'but have a lot of love to give!'.split(' '), indent: 0 }
-    ]);
+    ], 'bounce');
   } else if (id === 'rewardsBuddyScreen') {
     animateBuddyScreen(screen, 'rewardsBuddyText', [
       { words: "this is your rewards screen.".split(' '), indent: 0 },
       { words: "you and your parent can input".split(' '), indent: 0 },
       { words: "rewards up above!".split(' '), indent: 20 }
-    ]);
+    ], 'slide');
   } else if (id === 'rewardsBuddyScreen2') {
     animateBuddyScreen(screen, 'rewardsBuddyText2', [
       { words: "Once you get the points".split(' '), indent: 0 },
       { words: "required tap the paw to claim".split(' '), indent: 0 },
       { words: "it!".split(' '), indent: 40 }
-    ]);
+    ], 'bounce');
   } else if (id === 'rewardsBuddyScreen3') {
     animateBuddyScreen(screen, 'rewardsBuddyText3', [
       { words: "it'll refresh and then you can".split(' '), indent: 0 },
       { words: "enter in a new one.".split(' '), indent: 30 }
-    ]);
+    ], 'bounce');
   }
 }
 

@@ -582,7 +582,7 @@
 
     <!-- Food dog illustration -->
     <audio id="fooddogBark" src="images/fooddogbark.mp3" preload="auto"></audio>
-    <img id="fooddogImg" class="layer" style="left:30px;cursor:pointer;pointer-events:auto" src="images/fooddog.png" alt="" onclick="this.classList.remove('fooddog-pulse');void this.offsetWidth;this.classList.add('fooddog-pulse');document.getElementById('fooddogBark').currentTime=0;document.getElementById('fooddogBark').play()" />
+    <img id="fooddogImg" class="layer" style="left:30px;cursor:pointer;pointer-events:auto" src="images/fooddog.png" alt="" onclick="var el=this;el.classList.remove('fooddog-pulse');void el.offsetWidth;el.classList.add('fooddog-pulse');el.src='images/dogopenmouth.png';document.getElementById('fooddogBark').currentTime=0;document.getElementById('fooddogBark').play();setTimeout(function(){el.src='images/fooddog.png';},600);" />
 
     <!-- Brown card panel -->
     <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
@@ -605,10 +605,6 @@
     <!-- Point score label -->
     <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="foodScoreDisplay">0</span></p>
 
-    <!-- Buddy icon bottom-right -->
-    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
-      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
-    </div>
 
   </div>
 
@@ -620,7 +616,7 @@
 
     <!-- Watercat illustration -->
     <audio id="watercatMeow" src="images/playcatmeow2.mp3" preload="auto"></audio>
-    <img id="watercatImg" class="layer" style="left:26px;cursor:pointer;pointer-events:auto" src="images/watercat.png" alt="" onclick="this.classList.remove('watercat-pop');void this.offsetWidth;this.classList.add('watercat-pop');document.getElementById('watercatMeow').currentTime=0;document.getElementById('watercatMeow').play()" />
+    <img id="watercatImg" class="layer" style="left:26px;cursor:pointer;pointer-events:auto" src="images/watercat.png" alt="" onclick="var el=this;el.classList.remove('watercat-pop');void el.offsetWidth;el.classList.add('watercat-pop');el.src='images/catopenmouth.png';document.getElementById('watercatMeow').currentTime=0;document.getElementById('watercatMeow').play();setTimeout(function(){el.src='images/watercat.png';},600);setTimeout(function(){document.getElementById('watercatMeow').pause();document.getElementById('watercatMeow').currentTime=0;},2000);" />
 
     <!-- Brown card panel -->
     <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
@@ -643,10 +639,6 @@
     <!-- Point score label -->
     <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="waterScoreDisplay">0</span></p>
 
-    <!-- Buddy icon bottom-right -->
-    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
-      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
-    </div>
 
   </div>
 
@@ -658,7 +650,7 @@
 
     <!-- Playcat illustration -->
     <audio id="catPurr" src="images/catpurr.mp3" preload="auto"></audio>
-    <img id="playcatImg" class="layer" style="cursor:pointer;pointer-events:auto" src="images/playcat.png" alt="" onclick="var a=document.getElementById('catPurr');this.classList.remove('watercat-pop');void this.offsetWidth;this.classList.add('watercat-pop');a.currentTime=0;a.play();setTimeout(function(){a.pause();a.currentTime=0;},1500)" />
+    <img id="playcatImg" class="layer" style="cursor:pointer;pointer-events:auto" src="images/playcat.png" alt="" onclick="var el=this;var a=document.getElementById('catPurr');el.classList.remove('watercat-pop');void el.offsetWidth;el.classList.add('watercat-pop');a.currentTime=0;a.play();setTimeout(function(){el.src='images/playcatopenmouth.png';},400);setTimeout(function(){el.src='images/playcat.png';},2000);setTimeout(function(){a.pause();a.currentTime=0;},2000);" />
 
     <!-- Brown card panel -->
     <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
@@ -681,10 +673,6 @@
     <!-- Point score label -->
     <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="playScoreDisplay">0</span></p>
 
-    <!-- Buddy icon bottom-right -->
-    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
-      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
-    </div>
 
   </div>
 
@@ -695,7 +683,8 @@
     <img class="layer" src="images/backgroundhome.png" alt="" />
 
     <!-- Walk dog illustration -->
-    <img id="walkdogImg" class="layer" src="images/walkdog.png" alt="" />
+    <audio id="walkdogBark" src="images/walkdogbark.mp3" preload="auto"></audio>
+    <img id="walkdogImg" class="layer" style="cursor:pointer;pointer-events:auto" src="images/walkdog.png" alt="" onclick="var el=this;var a=document.getElementById('walkdogBark');el.classList.remove('watercat-pop');void el.offsetWidth;el.classList.add('watercat-pop');a.currentTime=0;a.play();setTimeout(function(){el.src='images/walkdogheadup.png';},400);a.onended=function(){el.src='images/walkdog.png';};" />
 
     <!-- Brown card panel -->
     <div class="clip" style="left:32px;top:20px;width:331px;height:491px">
@@ -718,10 +707,6 @@
     <!-- Point score label -->
     <p onclick="goToRewards()" style="position:absolute;left:13px;top:820px;font-family:'Comfortaa',sans-serif;font-size:16px;color:#ffffff;margin:0;line-height:normal;width:200px;cursor:pointer">point score: <span id="walkScoreDisplay">0</span></p>
 
-    <!-- Buddy icon bottom-right -->
-    <div style="position:absolute;left:332px;top:800px;width:39px;height:40px;overflow:hidden">
-      <img src="images/buddyicon.png" alt="" style="position:absolute;width:393px;height:852px;left:-332px;top:-800px" />
-    </div>
 
   </div>
 
