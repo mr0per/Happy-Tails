@@ -382,7 +382,8 @@ function showScreen(id) {
     });
     animateBuddyScreen(screen, 'pawFarewellText', [
       { words: 'Good luck buddy, and'.split(' '), indent: 0 },
-      { words: 'remember pets need a lot of love'.split(' '), indent: 0 }
+      { words: 'remember pets need a lot of'.split(' '), indent: 0 },
+      { words: ['love'], indent: 30 }
     ]);
   } else if (id === 'pawFarewellScreen2') {
     var practiceInputs = document.querySelectorAll('#walkPracticeScreen input[type="time"]');
@@ -665,6 +666,8 @@ function claimReward(n) {
 
 function showClaimedBanner(name) {
   var overlay = document.getElementById('toastOverlay');
+  var activeScreen = document.querySelector('.screen:not(.hidden)');
+  var confettiTarget = activeScreen || overlay;
 
   // Confetti
   var colors = ['#fdc2a4','#f9b234','#c0522a','#5e2910','#fff','#ffde9e'];
@@ -687,10 +690,11 @@ function showClaimedBanner(name) {
         'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px'),
         'opacity:1',
         'pointer-events:none',
+        'z-index:9999',
         'transform:rotate(' + rotate + 'deg)',
         'transition:none'
       ].join(';');
-      overlay.appendChild(piece);
+      confettiTarget.appendChild(piece);
       setTimeout(function() {
         piece.style.transition = 'top ' + duration + 'ms ease-in, opacity 300ms ease ' + (duration - 300) + 'ms';
         piece.style.top = (700 + Math.random() * 200) + 'px';
@@ -720,9 +724,10 @@ function showClaimedBanner(name) {
     'pointer-events:none',
     'opacity:1',
     'transition:opacity 0.5s ease',
-    'white-space:nowrap'
+    'white-space:nowrap',
+    'z-index:9999'
   ].join(';');
-  overlay.appendChild(banner);
+  confettiTarget.appendChild(banner);
   setTimeout(function() { banner.style.opacity = '0'; }, 2500);
   setTimeout(function() { if (banner.parentNode) banner.remove(); }, 3100);
 }
