@@ -77,6 +77,7 @@ body {
   to   { transform: translateY(0); }
 }
 
+
 /* Bubble + text pop-in */
 @keyframes popIn {
   0%   { opacity: 0; transform: scale(0.6); }
@@ -119,6 +120,7 @@ body {
 
 .buddy-animate {
   animation: buddySlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: bottom center;
 }
 
 .bubble-animate {

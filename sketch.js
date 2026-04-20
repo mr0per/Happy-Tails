@@ -457,54 +457,54 @@ document.getElementById('quitBtn').addEventListener('click', function () {
 
 document.addEventListener('click', function(e) {
   if (e.target.closest('#buddyText')) {
-    showScreen('buddy2Screen');
-  } else if (e.target.closest('#buddyText2')) {
-    showScreen('buddy3Screen');
-  } else if (e.target.closest('#collarTaskText')) {
-    showScreen('walkTabScreen');
-  } else if (e.target.closest('#walkTabText')) {
-    showScreen('walkPracticeScreen');
-  } else if (e.target.closest('#wayToGoText')) {
-    showScreen('pawPracticeScreen');
-  } else if (e.target.closest('#paw1ClickedText') || e.target.closest('#paw2ClickedText') || e.target.closest('#paw3ClickedText')) {
-    showScreen('pawHelpScreen');
-  } else if (e.target.closest('#pawHelpText')) {
-    showScreen('pawHelpScreen2');
-  } else if (e.target.closest('#pawHelpText2')) {
-    showScreen('pawHelpScreen3');
-  } else if (e.target.closest('#pawHelpText3')) {
-    showScreen('pawHelpScreen4');
-  } else if (e.target.closest('#pawHelpText4')) {
-    showScreen('pawFarewellScreen');
-  } else if (e.target.closest('#pawFarewellText')) {
-    showScreen('pawFarewellScreen2');
-  } else if (e.target.closest('#pawFarewellText2')) {
-    showScreen('homeScreen');
-  } else if (e.target.closest('#homeBuddyText')) {
-    showScreen('homeBuddy2Screen');
-  } else if (e.target.closest('#homeBuddyText2')) {
-    showScreen('homeBuddy3Screen');
-  } else if (e.target.closest('#homeBuddyText3')) {
-    showScreen('homeBuddyWaterScreen');
-  } else if (e.target.closest('#homeBuddyTextWater')) {
-    showScreen('homeBuddyWater2Screen');
-  } else if (e.target.closest('#homeBuddyTextWater2')) {
-    showScreen('homeBuddy4Screen');
-  } else if (e.target.closest('#homeBuddyText4')) {
-    showScreen('homeBuddy5Screen');
-  } else if (e.target.closest('#homeBuddyText5')) {
-    ['homeBuddy', 'homeBubble', 'homeBuddyText'].forEach(function(elId) {
-      var el = document.getElementById(elId);
-      if (el) el.style.display = 'none';
-    });
-    var btn = document.getElementById('homeBuddyIconBtn');
-    if (btn) btn.style.display = '';
-    showScreen('homeScreen');
-  } else if (e.target.closest('#rewardsBuddyText')) {
-    showScreen('rewardsBuddyScreen2');
-  } else if (e.target.closest('#rewardsBuddyText2')) {
-    showScreen('rewardsScreen');
-  }
+      showScreen('buddy2Screen');
+    } else if (e.target.closest('#buddyText2')) {
+      showScreen('buddy3Screen');
+    } else if (e.target.closest('#collarTaskText')) {
+      showScreen('walkTabScreen');
+    } else if (e.target.closest('#walkTabText')) {
+      showScreen('walkPracticeScreen');
+    } else if (e.target.closest('#wayToGoText')) {
+      showScreen('pawPracticeScreen');
+    } else if (e.target.closest('#paw1ClickedText') || e.target.closest('#paw2ClickedText') || e.target.closest('#paw3ClickedText')) {
+      showScreen('pawHelpScreen');
+    } else if (e.target.closest('#pawHelpText')) {
+      showScreen('pawHelpScreen2');
+    } else if (e.target.closest('#pawHelpText2')) {
+      showScreen('pawHelpScreen3');
+    } else if (e.target.closest('#pawHelpText3')) {
+      showScreen('pawHelpScreen4');
+    } else if (e.target.closest('#pawHelpText4')) {
+      showScreen('pawFarewellScreen');
+    } else if (e.target.closest('#pawFarewellText')) {
+      showScreen('pawFarewellScreen2');
+    } else if (e.target.closest('#pawFarewellText2')) {
+      showScreen('homeScreen');
+    } else if (e.target.closest('#homeBuddyText')) {
+      showScreen('homeBuddy2Screen');
+    } else if (e.target.closest('#homeBuddyText2')) {
+      showScreen('homeBuddy3Screen');
+    } else if (e.target.closest('#homeBuddyText3')) {
+      showScreen('homeBuddyWaterScreen');
+    } else if (e.target.closest('#homeBuddyTextWater')) {
+      showScreen('homeBuddyWater2Screen');
+    } else if (e.target.closest('#homeBuddyTextWater2')) {
+      showScreen('homeBuddy4Screen');
+    } else if (e.target.closest('#homeBuddyText4')) {
+      showScreen('homeBuddy5Screen');
+    } else if (e.target.closest('#homeBuddyText5')) {
+      ['homeBuddy', 'homeBubble', 'homeBuddyText'].forEach(function(elId) {
+        var el = document.getElementById(elId);
+        if (el) el.style.display = 'none';
+      });
+      var btn = document.getElementById('homeBuddyIconBtn');
+      if (btn) btn.style.display = '';
+      showScreen('homeScreen');
+    } else if (e.target.closest('#rewardsBuddyText')) {
+      showScreen('rewardsBuddyScreen2');
+    } else if (e.target.closest('#rewardsBuddyText2')) {
+      showScreen('rewardsScreen');
+    }
 });
 
 document.getElementById('skipBtn').addEventListener('click', function () {
